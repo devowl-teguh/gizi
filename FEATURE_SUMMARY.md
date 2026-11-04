@@ -1,7 +1,7 @@
 # Rangkuman Fitur Website Parenting & Gizi Anak
 
 Tanggal: 4 November 2026
-Status: homepage Playful Growth disetujui dan diimplementasikan bersama profil sementara serta alur hapus sesi. Fitur klinis dan AI masih dalam pengembangan.
+Status: homepage Playful Growth disetujui dan diimplementasikan bersama profil sementara serta alur hapus sesi. Pencarian AI bersumber sudah terhubung secara lokal; fitur klinis masih dalam pengembangan.
 
 ## Tujuan
 
@@ -52,7 +52,7 @@ Pengguna harus memasukkan ulang data pada kunjungan berikutnya. Panduan vaksin d
 
 ## AI agent melalui NaraRouter
 
-Pengguna sudah memiliki API key NaraRouter. Key belum diberikan atau dikonfigurasi.
+Pengguna sudah memiliki API key NaraRouter. Key sudah dikonfigurasi di file environment lokal yang diabaikan Git.
 
 ### Pembagian tugas
 
@@ -79,7 +79,7 @@ Browser → backend perantara → NaraRouter → penyedia model / pencarian.
 
 ### Batas privasi yang harus dijelaskan
 
-Data lokal bersifat sementara, tetapi konteks AI tetap dikirim ke NaraRouter dan layanan model/pencarian terkait. Tidak menyimpan data pada website sendiri tidak berarti layanan pihak ketiga tidak menyimpannya. Kebijakan retensi dan penggunaan data pihak ketiga belum diverifikasi; periksa sebelum peluncuran dan jelaskan kepada pengguna sebelum memakai AI. Jangan menjanjikan penghapusan data pihak ketiga saat tab ditutup.
+Data lokal bersifat sementara, tetapi konteks AI tetap dikirim ke NaraRouter dan layanan model/pencarian terkait. Tidak menyimpan data pada website sendiri tidak berarti layanan pihak ketiga tidak menyimpannya. Kebijakan gateway telah diperiksa; ketentuan penyedia model yang mendasari alias belum diverifikasi secara independen. Keterbatasan ini dijelaskan sebelum persetujuan AI. Lihat docs/AI_INTEGRATION.md. Jangan menjanjikan penghapusan data pihak ketiga saat tab ditutup.
 
 ## Alur pengguna
 
@@ -113,4 +113,4 @@ Data lokal bersifat sementara, tetapi konteks AI tetap dikirim ke NaraRouter dan
 - Deskripsi aplikasi: https://play.google.com/store/apps/details?hl=id&id=com.criyos.tentanganak
 - Dokumentasi NaraRouter: https://router.bynara.id/id/docs
 
-Screenshot dari pengguna digunakan sebagai referensi antarmuka. Homepage dan sesi sementara sudah berjalan; integrasi AI serta fitur klinis belum selesai.
+Screenshot dari pengguna digunakan sebagai referensi antarmuka. Homepage dan sesi sementara sudah berjalan; pencarian AI lokal sudah terhubung, sementara fitur klinis belum selesai.

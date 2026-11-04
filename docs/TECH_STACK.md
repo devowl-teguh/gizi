@@ -33,7 +33,7 @@ Requests and sensitive responses use no-store. Do not put personal context in UR
 
 Reload creates a new session. Background tabs may retain data, and browser restoration means closing a tab is not an absolute deletion guarantee. Provide an explicit “Hapus data & selesai” action that resets all state, aborts pending requests, and ignores late responses.
 
-Downloads are intentional user-owned copies and survive the website session. Context sent to NaraRouter/model providers is governed by their policies; retention is not yet verified and must be disclosed before AI use.
+Downloads are intentional user-owned copies and survive the website session. Context sent to NaraRouter/model providers is governed by their policies; gateway retention policy has been reviewed, while underlying-provider terms are not independently established. This limitation is disclosed before AI use; see docs/AI_INTEGRATION.md.
 
 ## Structure
 
@@ -57,7 +57,9 @@ Downloads are intentional user-owned copies and survive the website session. Con
 
 Responsive Playful Growth homepage, in-memory session provider, validated temporary child profile, navigation, accessible modal dialogs, privacy explanation, and explicit session reset are implemented. Native uncontrolled profile fields stay in the DOM only while their dialog is mounted; reset remounts the screen to discard every draft. Profile and query state live in React Context/useReducer.
 
-Clinical datasets, AI integration, rate limiting, PDF export, and clinical tool interfaces are not implemented yet. Search and tool dialogs clearly explain their pending status. No AI requests are made. Environment placeholders do not enable live API calls.
+NaraRouter recipe, stimulation, and general parenting searches are implemented with explicit consent, trusted source filtering, cancellation, timeouts, and local process limits. Production AI stays disabled until shared hosting protections are configured. See [AI integration](AI_INTEGRATION.md).
+
+Clinical datasets, PDF export, and clinical tool interfaces remain pending.
 
 ## Installed scaffold versions
 

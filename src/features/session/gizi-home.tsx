@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { AssistantPanel } from "@/features/assistant/assistant-panel";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import { ProfileForm } from "./profile-form";
@@ -23,6 +24,13 @@ function SessionScreen({ announcement, onReset }: { announcement: string; onRese
   function search(event: FormEvent) { event.preventDefault(); if (state.query.trim()) setPanel("search"); }
   function selectTool(tool: Tool) { setPanel(tool); }
   const tool = panel && panel in tools ? tools[panel as Tool] : null;
+  let ageMonths: number | undefined;
+  if (state.profile) {
+    const [y, m, d] = state.profile.birthDate.split("-").map(Number);
+    const now = new Date();
+    const months = Math.max(0, (now.getFullYear() - y) * 12 + now.getMonth() - m + 1 - (now.getDate() < d ? 1 : 0));
+    if (months <= 216) ageMonths = months;
+  }
   return <div className="site-shell">
     <a className="skip-link" href="#main">Langsung ke konten</a>
     <header className="site-header">
@@ -36,13 +44,13 @@ function SessionScreen({ announcement, onReset }: { announcement: string; onRese
       <section className="featured-grid" aria-label="Resep dan aktivitas"><button className="feature-card peach" onClick={() => selectTool("recipes")}><h2>{tools.recipes.title}</h2><p>{tools.recipes.description}</p></button><button className="feature-card sage" onClick={() => selectTool("stimulation")}><h2>{tools.stimulation.title}</h2><p>{tools.stimulation.description}</p></button></section>
       <section id="growth-tools" className="growth-section" aria-labelledby="growth-title"><h2 id="growth-title">Kenali tumbuh kembangnya</h2><div className="shortcut-grid"><button onClick={() => selectTool("growth")}>↗ Cek pertumbuhan</button><button onClick={() => selectTool("development")}>✓ Checklist perkembangan</button><button onClick={() => selectTool("vaccines")}>＋ Panduan vaksin</button></div></section>
       <section className="session-bar" aria-label="Profil sesi sementara"><div><span className="session-label">PROFIL SEMENTARA</span><p>{state.profile ? <><strong>{state.profile.nickname || "Si Kecil"}</strong><span> · {ageLabel(state.profile.birthDate)}</span></> : "Mulai dengan usia si Kecil, saat Anda siap."}</p></div><button className="text-button" onClick={() => setPanel("profile")}>{state.profile ? "Ubah profil" : "Isi profil anak"} ↗</button></section>
-      <footer className="site-footer"><p>Sesi sementara · Tanpa akun · Data minimum</p><p>Pencarian AI belum aktif. Belum ada konteks yang dikirim ke layanan AI.</p><div className="footer-actions"><button onClick={() => setPanel("privacy")}>Tentang data sesi</button><button onClick={() => setPanel("reset")}>Hapus data & selesai</button></div><p className="session-announcement" role="status">{announcement}</p></footer>
+      <footer className="site-footer"><p>Sesi sementara · Tanpa akun · Data minimum</p><p>AI mencari sumber setelah persetujuan Anda. Nama dan tanggal lahir tidak dikirim otomatis.</p><div className="footer-actions"><button onClick={() => setPanel("privacy")}>Tentang data sesi</button><button onClick={() => setPanel("reset")}>Hapus data & selesai</button></div><p className="session-announcement" role="status">{announcement}</p></footer>
     </main>
     {panel === "profile" && <Modal title="Kenali si Kecil" onClose={() => setPanel(null)}><ProfileForm onSaved={() => setPanel(null)} /></Modal>}
-    {tool && <Modal title={tool.title} onClose={() => setPanel(null)}><span className="panel-badge">Sedang disiapkan</span><p className="modal-intro">{tool.note}</p><div className="privacy-notice">{state.profile ? <>Profil sesi: <strong>{state.profile.nickname || "Si Kecil"}</strong> · {ageLabel(state.profile.birthDate)}.</> : "Anda dapat menyiapkan profil anak sementara terlebih dahulu."}</div><Button onClick={() => setPanel("profile")}>{state.profile ? "Ubah profil anak" : "Isi profil anak"} ↗</Button></Modal>}
-    {panel === "search" && <Modal title="Cari panduan untuk si Kecil" onClose={() => setPanel(null)}><span className="panel-badge">Asisten belum terhubung</span><p className="search-query">“{state.query.trim()}”</p><p className="modal-intro">Pencarian berbasis sumber akan tersedia setelah integrasi NaraRouter selesai. Pertanyaan ini hanya ada di memori halaman dan belum dikirim ke layanan AI.</p><Button onClick={() => setPanel(null)}>Kembali ke beranda</Button></Modal>}
+    {(panel === "recipes" || panel === "stimulation" || panel === "search") && <Modal title={panel === "search" ? "Cari panduan untuk si Kecil" : tools[panel].title} onClose={() => setPanel(null)}><AssistantPanel kind={panel === "search" ? "guide" : panel} initialQuery={panel === "search" ? state.query : ""} ageMonths={ageMonths} onReset={onReset} /></Modal>}
+    {tool && panel !== "recipes" && panel !== "stimulation" && <Modal title={tool.title} onClose={() => setPanel(null)}><span className="panel-badge">Sedang disiapkan</span><p className="modal-intro">{tool.note}</p><div className="privacy-notice">{state.profile ? <>Profil sesi: <strong>{state.profile.nickname || "Si Kecil"}</strong> · {ageLabel(state.profile.birthDate)}.</> : "Anda dapat menyiapkan profil anak sementara terlebih dahulu."}</div><Button onClick={() => setPanel("profile")}>{state.profile ? "Ubah profil anak" : "Isi profil anak"} ↗</Button></Modal>}
     {panel === "reset" && <Modal title="Akhiri sesi ini?" onClose={() => setPanel(null)}><p className="modal-intro">Profil anak, pertanyaan, dan semua isian sesi ini akan dikosongkan. Setelah selesai, Anda bisa mulai lagi dengan sesi baru.</p><div className="dialog-actions"><button className="secondary-button" onClick={() => setPanel(null)}>Lanjutkan sesi</button><Button onClick={onReset}>Hapus data & selesai</Button></div></Modal>}
-    {panel === "privacy" && <Modal title="Anda memegang kendali" onClose={() => setPanel(null)}><div className="privacy-copy"><p>Profil dan pertanyaan hanya ada di memori halaman. Tidak ada akun atau penyimpanan data anak di browser maupun database.</p><p>Memuat ulang halaman menghapus sesi. Tab di background dapat mempertahankan data; pemulihan halaman setelah tab ditutup bergantung pada browser. Gunakan “Hapus data & selesai” untuk mengosongkannya sekarang.</p><p>Asisten AI belum aktif. Saat diaktifkan nanti, konteks minimum akan dikirim ke NaraRouter dan penyedia model, dengan penjelasan sebelum digunakan.</p></div><Button onClick={() => setPanel(null)}>Mengerti</Button></Modal>}
+    {panel === "privacy" && <Modal title="Anda memegang kendali" onClose={() => setPanel(null)}><div className="privacy-copy"><p>Profil dan pertanyaan hanya ada di memori halaman. Tidak ada akun atau penyimpanan data anak di browser maupun database.</p><p>Memuat ulang halaman menghapus sesi. Tab di background dapat mempertahankan data; pemulihan halaman setelah tab ditutup bergantung pada browser. Gunakan “Hapus data & selesai” untuk mengosongkannya sekarang.</p><p>AI hanya berjalan setelah persetujuan Anda. Pertanyaan dan konteks minimum dikirim ke NaraRouter serta layanan model/pencarian. Kebijakan pihak ketiga berlaku; hapus sesi tidak menjamin penghapusan data di sana. Nama dan tanggal lahir tidak dikirim otomatis.</p></div><Button onClick={() => setPanel(null)}>Mengerti</Button></Modal>}
   </div>;
 }
 function SessionRoot() {
