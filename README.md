@@ -1,6 +1,6 @@
 # Gizi
 
-A session-only parenting and child nutrition web app. Initial scaffold; product features and live AI are not implemented.
+A session-only parenting and child nutrition web app. The approved Playful Growth homepage and temporary profile flow are implemented; clinical tools and live AI are still pending.
 
 ## Development
 
@@ -26,7 +26,7 @@ npm run build
 
 - [Feature summary](FEATURE_SUMMARY.md)
 - [Tech stack and architecture](docs/TECH_STACK.md)
-- [Design reference — pending review](docs/DESIGN.md)
+- [Approved design reference](docs/DESIGN.md)
 - [Contributor rules](AGENTS.md)
 
-Feature directories are placeholders, not working modules. No child data is collected by the initial page. Deploy with a Next.js server runtime when enabling AI; static-only hosting cannot run Route Handlers.
+The session feature contains the working homepage and profile flow. Other feature directories remain placeholders. Child data stays in browser memory only and is cleared by explicit reset or page reload. Deploy with a Next.js server runtime when enabling AI; static-only hosting cannot run Route Handlers.

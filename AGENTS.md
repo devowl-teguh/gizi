@@ -17,6 +17,6 @@ Read FEATURE_SUMMARY.md, docs/TECH_STACK.md, and docs/DESIGN.md before implement
 - Keep NaraRouter secrets and calls server-side. Never log personal payloads.
 - Use verified deterministic rules for growth and vaccination; AI handles sourced search and explanations.
 - Keep AI disabled until validation, request/cost limits, timeout handling, and provider privacy review are in place.
-- The Figma design is pending user review. Do not treat it as approved for implementation yet.
+- Playful Growth homepage design was approved on 4 November 2026. See docs/DESIGN.md for implementation status.
 - Update documentation when changing architecture or scope.
 - Run npm run lint, npm run typecheck, and npm run build after substantive code changes.

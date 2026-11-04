@@ -1,6 +1,6 @@
 # Design reference
 
-Status: pending user review, 4 November 2026. Homepage design is not yet implemented in Next.js.
+Status: approved by the user on 4 November 2026. Responsive homepage implemented in Next.js.
 
 Selected exploration: **Playful Growth**.
 
@@ -15,4 +15,8 @@ Figma: https://www.figma.com/design/UCbNpWDiSaLURwttuBKfva
 
 Two other explorations (Warm Family and Calm & Trusted) were previewed in chat. Only Playful Growth was created in Figma.
 
-Before implementation, incorporate user review and complete remaining feature screens, result states, empty/error/loading states, and the explicit end-session flow. Do not infer working features from static design controls. No AI key or child data is part of the design.
+The implementation adds an in-memory child profile, age display, session privacy explanation, and an explicit end-session confirmation. Search and tool dialogs explain their pending status; clinical tools and AI search are not implemented yet. No AI key is included.
+
+The empty component folders contained no reusable UI implementations, and Figma snippets had no resolvable code imports. Local Button and Modal primitives were created for the project. DM Sans and Inter are bundled locally with their OFL licenses; there are no Google Fonts requests at runtime or build time.
+
+Verified in the browser: profile creation, missing/future date validation, search pending state, explicit reset of profile and question, and reset on refresh. Mobile layouts checked at 390px and 320px without horizontal overflow. Desktop reviewed against the approved Figma screenshot.

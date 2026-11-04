@@ -1,7 +1,7 @@
 # Rangkuman Fitur Website Parenting & Gizi Anak
 
 Tanggal: 4 November 2026
-Status: rangkuman kesepakatan dan arah implementasi; aplikasi belum dibangun.
+Status: homepage Playful Growth disetujui dan diimplementasikan bersama profil sementara serta alur hapus sesi. Fitur klinis dan AI masih dalam pengembangan.
 
 ## Tujuan
 
@@ -113,4 +113,4 @@ Data lokal bersifat sementara, tetapi konteks AI tetap dikirim ke NaraRouter dan
 - Deskripsi aplikasi: https://play.google.com/store/apps/details?hl=id&id=com.criyos.tentanganak
 - Dokumentasi NaraRouter: https://router.bynara.id/id/docs
 
-Screenshot dari pengguna digunakan sebagai referensi antarmuka. Tidak ada klaim bahwa implementasi website atau integrasi AI sudah selesai.
+Screenshot dari pengguna digunakan sebagai referensi antarmuka. Homepage dan sesi sementara sudah berjalan; integrasi AI serta fitur klinis belum selesai.

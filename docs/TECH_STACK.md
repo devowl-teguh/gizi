@@ -55,7 +55,9 @@ Downloads are intentional user-owned copies and survive the website session. Con
 
 ## Status
 
-Initial scaffold only. Clinical datasets, session provider, AI integration, rate limiting, PDF export, and feature interfaces are not implemented yet. Environment placeholders do not enable live API calls.
+Responsive Playful Growth homepage, in-memory session provider, validated temporary child profile, navigation, accessible modal dialogs, privacy explanation, and explicit session reset are implemented. Native uncontrolled profile fields stay in the DOM only while their dialog is mounted; reset remounts the screen to discard every draft. Profile and query state live in React Context/useReducer.
+
+Clinical datasets, AI integration, rate limiting, PDF export, and clinical tool interfaces are not implemented yet. Search and tool dialogs clearly explain their pending status. No AI requests are made. Environment placeholders do not enable live API calls.
 
 ## Installed scaffold versions
 
