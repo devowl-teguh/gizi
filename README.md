@@ -30,6 +30,7 @@ npm run build
 - [Tech stack and architecture](docs/TECH_STACK.md)
 - [Approved design reference](docs/DESIGN.md)
 - [AI integration and privacy](docs/AI_INTEGRATION.md)
+- [Vercel Web Analytics](docs/ANALYTICS.md)
 - [Contributor rules](AGENTS.md)
 
 The session feature contains the working homepage and profile flow. Other feature directories remain placeholders. Child data stays in browser memory only and is cleared by explicit reset or page reload. Deploy with a Next.js server runtime when enabling AI; static-only hosting cannot run Route Handlers.

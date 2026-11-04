@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { WebAnalytics } from "@/features/analytics/web-analytics";
 import "./globals.css";
 
 const dmSans = localFont({ src: "../assets/fonts/dm-sans-latin.woff2", variable: "--font-dm-sans", weight: "100 1000", display: "swap" });
@@ -13,7 +14,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="id" className={`${dmSans.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <WebAnalytics />
+      </body>
     </html>
   );
 }

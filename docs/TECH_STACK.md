@@ -10,6 +10,7 @@ Agreed: 4 November 2026. Product scope: ../FEATURE_SUMMARY.md.
 - Zod: validation at browser and server boundaries.
 - Server-side fetch: NaraRouter integration. No separate agent server or SDK required initially.
 - Recharts: growth charts. Clinical reference data and calculations must be independently verified.
+- Vercel Web Analytics: homepage page views only, with URL query strings and fragments removed. See [Analytics](ANALYTICS.md).
 - No database or authentication.
 
 ## AI connection
