@@ -18,6 +18,8 @@ Membuat web app parenting berbahasa Indonesia yang terinspirasi fungsi aplikasi 
 - Backend perantara AI tidak menyimpan isi pertanyaan, data anak, atau jawaban ke database maupun log aplikasi. Hindari pencatatan payload pada observability dan error reporting.
 - Aset publik website boleh di-cache, tetapi data pribadi dan respons AI tidak boleh di-cache.
 
+Daftar status terkini dan pekerjaan tertunda: [docs/ROADMAP.md](docs/ROADMAP.md).
+
 ## Fitur prioritas versi pertama
 
 | Fitur | Perilaku |
