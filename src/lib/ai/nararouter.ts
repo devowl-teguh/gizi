@@ -1,19 +1,20 @@
 import "server-only";
 import { allowedDomains, parseSources, parseAnswer, type AssistantInput, type AssistantResult } from "./contracts.ts";
 
+const NARAROUTER_MODEL = "deepseek-v4-flash";
+const NARAROUTER_BASE_URL = "https://router.bynara.id/v1";
+
 export class AssistantError extends Error {
   status: number;
   constructor(status: number, message: string) { super(message); this.status = status; }
 }
 export function configuration() {
   const key = process.env.NARAROUTER_API_KEY?.trim();
-  const model = process.env.NARAROUTER_MODEL?.trim();
-  const base = (process.env.NARAROUTER_BASE_URL || "https://router.bynara.id/v1").replace(/\/$/, "");
-  if (!key || !model || base !== "https://router.bynara.id/v1") throw new AssistantError(503, "Asisten belum dikonfigurasi. Silakan coba lagi nanti.");
-  return { key, model, base };
+  if (!key) throw new AssistantError(503, "Asisten belum dikonfigurasi. Silakan coba lagi nanti.");
+  return { key, model: NARAROUTER_MODEL, base: NARAROUTER_BASE_URL };
 }
 async function jsonRequest(url: string, body: unknown, key: string, signal: AbortSignal, fetcher: typeof fetch) {
-  const response = await fetcher(url, { method: "POST", headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" }, body: JSON.stringify(body), cache: "no-store", signal, redirect: "error" });
+  const response = await fetcher(url, { method: "POST", headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json", "User-Agent": "Gizi/0.1" }, body: JSON.stringify(body), cache: "no-store", signal, redirect: "error" });
   if (!response.ok) throw new AssistantError(response.status === 429 ? 429 : 502, response.status === 429 ? "Layanan sedang mencapai batas penggunaan. Coba lagi beberapa saat." : "Layanan AI sedang tidak tersedia. Silakan coba lagi.");
   // Limit provider output before parsing; never log provider payloads or raw errors.
   const reader = response.body?.getReader();

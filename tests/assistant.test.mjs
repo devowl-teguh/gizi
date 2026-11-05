@@ -1,15 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { assistantInputSchema, parseSources, parseAnswer, trustedUrl } from '../src/lib/ai/contracts.ts';
-import { runAssistant } from '../src/lib/ai/nararouter.ts';
+import { configuration, runAssistant } from '../src/lib/ai/nararouter.ts';
 import { reserve } from '../src/lib/ai/limits.ts';
 
 const input = { kind: 'stimulation', query: 'ide bermain', consent: true };
 const source = { id: 1, title: 'Play', url: 'https://www.unicef.org/parenting', snippet: 'Play with a soft ball.' };
 const answer = { summary: 'Ide bermain bersama.', ideas: [{ title: 'Bermain bola', materials: 'Bola lembut', steps: ['Gulirkan bola bersama.'], sourceIds: [1] }], cautions: ['Dampingi anak.'] };
 process.env.NARAROUTER_API_KEY = 'test-not-a-real-key';
-process.env.NARAROUTER_MODEL = 'test-model';
-process.env.NARAROUTER_BASE_URL = 'https://router.bynara.id/v1';
+
+test('server uses fixed model and endpoint and still requires a secret key', () => {
+  assert.deepEqual(configuration(), { key: 'test-not-a-real-key', model: 'deepseek-v4-flash', base: 'https://router.bynara.id/v1' });
+  const key = process.env.NARAROUTER_API_KEY;
+  try { delete process.env.NARAROUTER_API_KEY; assert.throws(() => configuration(), error => error.status === 503); }
+  finally { process.env.NARAROUTER_API_KEY = key; }
+});
 
 test('requires explicit consent and rejects identity fields', () => {
   assert.equal(assistantInputSchema.safeParse({ ...input, consent: false }).success, false);
@@ -42,6 +47,7 @@ test('runs one search and one completion; only retrieved sources escape', async 
   assert.equal(calls.length, 2); assert.equal(result.status, 'ok'); assert.equal(result.sources[0].url, source.url);
   assert.equal('snippet' in result.sources[0], false);
   assert.equal(calls[0].init.cache, 'no-store'); assert.equal(calls[1].init.cache, 'no-store');
+  assert.equal(calls[0].init.headers['User-Agent'], 'Gizi/0.1'); assert.equal(calls[1].init.headers['User-Agent'], 'Gizi/0.1');
   assert.equal(JSON.parse(calls[1].init.body).max_tokens, 2200);
 });
 test('provider failures are sanitized and cancellation propagates', async () => {

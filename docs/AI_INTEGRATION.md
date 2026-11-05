@@ -1,12 +1,12 @@
 # NaraRouter integration
 
-Implemented 4 November 2026. The local `.env` is ignored by Git. Its key was checked without printing it. `deepseek-v4-flash` was present in the authenticated model catalog and selected in the previously empty model setting. No key is bundled into browser assets.
+Implemented 4 November 2026. The local `.env` is ignored by Git. The NaraRouter API key is supplied through `NARAROUTER_API_KEY`; the model `deepseek-v4-flash` and `https://router.bynara.id/v1` endpoint are fixed in server code. No key is bundled into browser assets. Existing model and base URL environment variables are no longer read.
 
 ## Request path
 
 1. Browser shows the exact context fields and requires an unchecked-by-default consent box.
 2. It POSTs kind, query, optional age in months, materials/ingredients, optional allergies, and consent to `/api/assistant`. No profile name, birth date, or sex is included automatically. Free text can still contain personal information if a user types it; the form asks users not to do so.
-3. Server validates a strict Zod schema; unknown fields are rejected. Request bodies are capped at 8 KiB.
+3. Server validates a strict Zod schema; unknown fields are rejected. Request bodies are capped at 8 KiB. Outbound requests identify the application as `Gizi/0.1`; the default client identification was rejected by the provider's Cloudflare protection during local testing.
 4. One explicit NaraRouter MCP `web_search` call requests five results. Domain hints favor UNICEF for play and NHS for recipes. Domain filtering is enforced again locally because search responses can include results outside requested domains.
 5. At most three unique HTTPS sources with nonempty excerpts are accepted from UNICEF, WHO, Kemenkes/Kemkes, IDAI, NHS, or HealthyChildren. Each excerpt is capped at 2,400 characters. No page fetch or autonomous tool loop is performed.
 6. One completion synthesizes an Indonesian JSON answer. It receives only those excerpts and the entered context, with a 2,200-token output request. Invalid output, truncated answers, generated URLs, or source IDs outside the retrieved set are rejected. Links rendered in the browser are taken only from retrieved sources.

@@ -20,7 +20,7 @@ Browser → POST /api/assistant → server-side validation and bounded agent orc
 Base URL: https://router.bynara.id/v1
 Documentation: https://router.bynara.id/docs
 
-Use NARAROUTER_API_KEY as a server-only secret. Never expose it through NEXT_PUBLIC_, browser code, logs, or source control. Choose NARAROUTER_MODEL after checking models available to the key and web-search support. An ordinary model completion must not be presented as verified web search.
+Use NARAROUTER_API_KEY as a server-only secret. Never expose it through NEXT_PUBLIC_, browser code, logs, or source control. The server code specifies the NaraRouter endpoint and deepseek-v4-flash model; changing either requires a code change. An ordinary model completion must not be presented as verified web search.
 
 Agent work: recipe search, stimulation activities, parenting references, and sourced explanations. Deterministic code owns growth calculations and vaccine rules. The model must not invent clinical reference values or citations.
 

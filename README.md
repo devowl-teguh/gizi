@@ -12,7 +12,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open http://localhost:3000. Set NARAROUTER_API_KEY and NARAROUTER_MODEL in the ignored environment file. Search requires explicit consent; profile identity is not sent automatically. Production AI is disabled by default pending shared hosting safeguards. See docs/AI_INTEGRATION.md.
+Open http://localhost:3000. Set NARAROUTER_API_KEY in the ignored environment file. Model and endpoint are defined in server code. Search requires explicit consent; profile identity is not sent automatically. Production AI is disabled by default pending shared hosting safeguards. See docs/AI_INTEGRATION.md.
 
 ## Checks
 
