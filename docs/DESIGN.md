@@ -15,7 +15,7 @@ Figma: https://www.figma.com/design/UCbNpWDiSaLURwttuBKfva
 
 Two other explorations (Warm Family and Calm & Trusted) were previewed in chat. Only Playful Growth was created in Figma.
 
-The implementation adds an in-memory child profile, age display, session privacy explanation, and an explicit end-session confirmation. Search dialogs now contain contextual inputs, consent, loading/cancel, error, empty, and sourced-result states. Clinical tools remain pending. No AI key is included.
+The implementation adds an in-memory child profile, age display, session privacy explanation, and an explicit end-session confirmation. Search dialogs now contain contextual inputs, consent, loading/cancel, error, empty, and sourced-result states. A WHO growth tool for weight and length/height by age and a non-diagnostic developmental milestone observation checklist are available; and a vaccine reference and temporary notes are available; individual vaccination planning remains pending. No AI key is included.
 
 The empty component folders contained no reusable UI implementations, and Figma snippets had no resolvable code imports. Local Button and Modal primitives were created for the project. DM Sans and Inter are bundled locally with their OFL licenses; there are no Google Fonts requests at runtime or build time.
 

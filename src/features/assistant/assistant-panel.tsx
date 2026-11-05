@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { assistantInputSchema, type AssistantResult } from "@/lib/ai/contracts";
+import { useSession } from "@/features/session/session-provider";
 
 export function AssistantPanel({ kind, initialQuery, ageMonths, onReset }: { kind: "recipes" | "stimulation" | "guide"; initialQuery: string; ageMonths?: number; onReset: () => void }) {
+  const { dispatch } = useSession();
   const [query, setQuery] = useState(initialQuery);
   const [age, setAge] = useState(ageMonths === undefined ? "" : String(ageMonths));
   const [ingredients, setIngredients] = useState("");
@@ -31,7 +33,9 @@ export function AssistantPanel({ kind, initialQuery, ageMonths, onReset }: { kin
       const payload = await response.json();
       if (id !== requestId.current) return;
       if (!response.ok) throw new Error(typeof payload.error === "string" ? payload.error : "Pencarian belum berhasil.");
-      setResult(payload as AssistantResult);
+      const received = payload as AssistantResult;
+      setResult(received);
+      if (received.status === "ok") dispatch({ type: "search-result", search: { kind, query: parsed.data.query, result: received } });
     } catch (cause) {
       if (id !== requestId.current) return;
       setError(cause instanceof Error && cause.name !== "AbortError" ? cause.message : "Pencarian dibatalkan.");

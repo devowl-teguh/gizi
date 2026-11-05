@@ -1,7 +1,7 @@
 # Rangkuman Fitur Website Parenting & Gizi Anak
 
 Tanggal: 4 November 2026
-Status: homepage Playful Growth disetujui dan diimplementasikan bersama profil sementara serta alur hapus sesi. Pencarian AI bersumber sudah terhubung secara lokal; fitur klinis masih dalam pengembangan.
+Status: homepage Playful Growth disetujui dan diimplementasikan bersama profil sementara serta alur hapus sesi. Pencarian AI bersumber sudah terhubung secara lokal. Cek berat dan panjang/tinggi menurut umur WHO tersedia untuk usia 0–1.856 hari; checklist perkembangan berisi contoh terpilih CDC yang bukan skrining; acuan imunisasi program bayi dan baduta 2025 serta catatan sesi tersedia tanpa jadwal kejar; fitur pertumbuhan lainnya dan penilaian vaksin individual masih tertunda. Ringkasan sesi dapat dicetak atau disimpan sebagai PDF melalui dialog browser.
 
 ## Tujuan
 

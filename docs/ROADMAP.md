@@ -1,6 +1,6 @@
 # Status dan fitur tertunda
 
-Terakhir diperbarui: 4 November 2026. Fitur berikutnya ditunda sampai diminta untuk dilanjutkan; urutan di bawah adalah usulan, bukan jadwal.
+Terakhir diperbarui: 5 November 2026. Fitur berikutnya ditunda sampai diminta untuk dilanjutkan; urutan di bawah adalah usulan, bukan jadwal.
 
 ## Sudah tersedia
 
@@ -8,13 +8,17 @@ Terakhir diperbarui: 4 November 2026. Fitur berikutnya ditunda sampai diminta un
 - Profil anak sementara, validasi tanggal lahir, dan tampilan usia.
 - Tombol untuk menghapus data dan mengakhiri sesi; memuat ulang halaman juga memulai sesi baru.
 - Pencarian resep, ide stimulasi, dan panduan umum melalui NaraRouter **secara lokal**, dengan persetujuan, sumber, serta batas dan penanganan kesalahan dasar. Jawaban AI dapat keliru dan perlu diperiksa terhadap sumbernya.
+- Cetak ringkasan profil, pengukuran berat menurut umur, dan hasil pencarian AI terakhir; pengguna dapat memilih simpan sebagai PDF pada dialog cetak browser. File yang disimpan tetap ada setelah sesi berakhir.
+- Checklist observasi perkembangan: empat contoh terpilih per tahap CDC untuk usia 2–71 bulan, jawaban dan ringkasan sesi; bukan skrining atau diagnosis. Usia 60–71 bulan memakai contoh tahap 5 tahun.
+- Panduan imunisasi rutin Kemenkes (2025) untuk bayi dan baduta hingga 18 bulan, dengan catatan status sementara dan ringkasan cetak; bukan penentuan kelayakan atau jadwal kejar.
+- Cek berat serta panjang atau tinggi badan menurut umur berdasarkan tabel harian WHO untuk usia 0–1.856 hari, dengan grafik dan z-score. Ini belum mencakup penilaian berat menurut tinggi atau diagnosis.
 
 ## Prioritas fitur berikutnya — tertunda
 
-1. **Cek pertumbuhan.** Pilih dan dokumentasikan rujukan yang terverifikasi, cakupan usia dan satuan; buat formulir pengukuran, perhitungan deterministik, grafik, dan penjelasan hasil. Uji dengan nilai rujukan dan kondisi batas. Hasil bukan diagnosis.
-2. **Checklist perkembangan.** Pilih instrumen dan rujukan sesuai rentang usia; susun pertanyaan, cara penilaian, rangkuman, dan aktivitas yang relevan. Uji bersama rujukannya.
-3. **Panduan vaksin.** Verifikasi sumber dan versi jadwal yang berlaku; buat input riwayat serta panduan untuk sesi berjalan. Tidak ada pengingat saat situs ditutup.
-4. **Unduh ringkasan.** Buat PDF yang hanya diunduh atas tindakan pengguna, berisi hasil yang tersedia dalam sesi. Jelaskan bahwa file unduhan tetap ada setelah sesi berakhir.
+1. **Perluas cek pertumbuhan.** Berat dan panjang/tinggi menurut umur sudah tersedia. Berat menurut tinggi, lingkar kepala, serta verifikasi klinis lebih lanjut masih tertunda.
+2. **Perluas checklist perkembangan.** Saat ini hanya empat contoh per tahap CDC, bukan daftar lengkap atau instrumen skrining. Tinjau terjemahan bersama ahli serta pertimbangkan instrumen skrining yang tervalidasi dan sesuai konteks Indonesia.
+3. **Perluas panduan vaksin.** Ringkasan program bayi dan baduta sudah tersedia. Jadwal usia sekolah, vaksin pilihan, riwayat tanggal/dosis terperinci dan rekomendasi individual masih tertunda; perlu validasi klinis dan sumber terkini. Tidak ada pengingat saat situs ditutup.
+4. **Perluas ringkasan** saat ada hasil atau cakupan fitur tambahan.
 
 Urutan dapat diubah sesuai kebutuhan. Tiap fitur harus tetap berfungsi tanpa login dan tidak menyimpan data anak antar kunjungan.
 

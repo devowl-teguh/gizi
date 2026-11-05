@@ -60,7 +60,13 @@ Responsive Playful Growth homepage, in-memory session provider, validated tempor
 
 NaraRouter recipe, stimulation, and general parenting searches are implemented with explicit consent, trusted source filtering, cancellation, timeouts, and local process limits. Production AI stays disabled until shared hosting protections are configured. See [AI integration](AI_INTEGRATION.md).
 
-Clinical datasets, PDF export, and clinical tool interfaces remain pending.
+Weight-for-age uses WHO daily LMS parameters for ages 0–1,856 days, an in-memory measurement, a Recharts reference graph, and restricted LMS beyond ±3 SD. Optional length/height-for-age also uses WHO daily LMS values. It uses recumbent length through day 730, standing height from day 731, and adjusts by 0.7 cm if the recorded position differs. It does not assess weight-for-height or diagnose. Source and limitations are recorded in `src/lib/reference-data/README.md`; clinical review remains outstanding.
+
+Development monitoring uses four selected CDC milestones per age stage for ages 2–71 months, with the younger checklist between ages and the 5-year examples for 60–71 months. The original CDC guidance calls for corrected age when born more than three weeks early; users are instructed to seek professional help choosing age. This translated subset is neither the full CDC checklist nor validated screening. Responses are stored only in session and cleared on profile changes, reset and refresh. Translation has not been clinically reviewed.
+
+The vaccine panel presents the 2025 Kemenkes routine program for infancy through 18 months, including region-specific JE, and allows optional in-session status notes. It is not an eligibility or catch-up algorithm; other vaccines and school schedules are omitted, and the source must be periodically rechecked. Clinical review remains outstanding.
+
+The user can print the current profile, latest growth and development results, vaccine notes and latest successful AI result or save them as PDF through the browser print dialog. Results remain in React memory until reset or refresh. The downloaded file remains on the device. A full vaccine eligibility and catch-up tool remains pending.
 
 ## Installed scaffold versions
 
